@@ -1,0 +1,68 @@
+\documentclass[12pts,a4paper,openany]{book}
+\usepackage{comment}
+\usepackage{bm}
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{cite}
+\usepackage{color} % This line did not work if I put this on "\usepackage[dvipdfmx]{graphicx}"
+\usepackage[toc,page]{appendix}
+%
+%\renewcommand{\appendixname}{Appendix}
+\renewcommand{\baselinestretch}{1.3} % Adjustment of all of the spaces between lines
+%
+\sloppy %To prevent sticking of strings
+%
+\title{\Huge{Doctoral thesis} \\  Applications of Multicanonical Molecular Dynamics to Biomolecular Systems}
+\author{Author: Shinji IIDA \\ Supervisers: Haruki NAKAMURA and Junichi HIGO}
+%
+\pagestyle{plain}
+
+%%% BEGIN DOCUMENT
+\begin{document}
+\bibliographystyle{jplain}
+\maketitle
+\input{../preface/preface}
+\input{../acknowledgements/acknowledgements}
+\input{../abbriviations/abbriviations}
+\input{../abstract/abstract}
+\chapter*{Physical Constants}
+aaa\cite{Iida2016}
+\tableofcontents
+
+\chapter{Proteins XXX}
+	\section{What Do Proteins Do in our Body?}
+	{\color{red} explain protein functions via laminin, dynein, p53, and a famous protein.}
+	\section{Protein Geometry}
+		\subsection{Amino Acids}
+			{\color{red} 
+			note: peptide bonds, dihedral angles, statistical knowledge, pKa
+			}
+	\section{Protein Folding}
+		\subsection{Anfinsen's Dogma}
+		\subsection{Levinthal Paradox}
+		
+\chapter{Molecular Dynamics Simulation for Proteins}
+	\section{An Overview of Molecular Dynamics}
+	\section{Newtonian Equation}
+	\section{Integrators}
+	\section{Force Field}
+	\section{Long Range Interaction}
+	\section{Thremostat}
+	\section{Barostat}
+	\section{Shake Algorithm}
+	\section{Analysis}
+		\subsection{Root Mean Square Deviation}
+		\subsection{Potential of Mean Force}
+		\subsection{Principal Component Analysis}
+		\subsection{DSSP}
+	\section{Limitations}
+
+\input{../enhance_rev/enhanced_rev}
+\input{../single_CTD/single_p53ctd_study}
+
+\bibliography{/Users/siida/Dropbox/Bibliography/library}
+
+\begin{appendices}
+	\chapter{test}
+\end{appendices}
+
+\end{document}

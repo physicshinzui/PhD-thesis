@@ -1,0 +1,261 @@
+\chapter{Acetylation of the p53 C-terminal Domain Varies its own Free-Energy Landscape}
+
+\section{Introduction}
+Intrinsically disordered regions (IDRs) of proteins are highly flexible in physiological conditions unless interacting with its partner molecule.[1] 
+Whereas structurally ordered proteins exert their biological functions through well-defined quaternary, tertiary, and secondary structures, IDRs exert their functions actively by their conformational flexibility. 
+Signal transduction is a typical function of IDR,[2] where a single IDR interacts with different partner molecules to regulate the signal transduction. 
+This multi-partner interaction property is called a hub property.[3] 
+IDRs are related to some diseases such as cancer, diabetes and neurodegenerative disease.[4] 
+Therefore, IDRs are an important subject related to biology, biophysics, and medical science.
+
+Actually, IDRs can be characterized as (1) dynamic conformations (conformational ensemble), (2) post-translation modification (PTM), and (3) roles of IDR–partner interaction. 
+(1) An IDR does not adopt a specific tertiary structure in the unbound state. Consequently, IDR is not characterised by a single tertiary structure but by a conformational ensemble.[5] 
+The relation between the conformational ensemble and its biological functions has not been understood sufficiently.[6] 
+Presumably, the conformational ensemble architecture affects the binding mechanism. 
+(2) PTM is found frequently in IDR. 
+Importantly, PTM such as methylation, phosphorylation, and acetylation alters the physicochemical properties of IDR and modulates the functionality.[2]
+Consequently, it is interesting to investigate the variation of the conformational ensemble by PTM. 
+(3) Some IDRs adopt specific tertiary structures when interacting with their partners. 
+This phenomenon is known as coupled folding and binding.[7] 
+Two interaction mechanisms have been proposed for coupled folding and binding processes: induced folding[8, 9] and conformational selection.[9, 10] 
+In induced folding, IDR binds to the partner with conformations differing from that adopted in the complex (i.e., genuine conformation found in the native complex form). 
+Subsequently, the IDR conformation varies until reaching the most stable complex structure. 
+In conformational selection, the genuine bound conformation is involved in advance in the conformational ensemble of the unbound state. 
+This bound form is used to bind to the partner. 
+Recently, a computational report has described that coupled folding and binding takes place by a combination of the induced folding and the conformational selection.[11] 
+Another IDR–partner interaction picture is fuzzy-complex formation, by which IDR binds to its partner adopting multiple conformations.[12] 
+Therefore, in this mechanism, conformational disorder/flexibility emerges in both bound and unbound states. 
+Enthalpic stability for the individual bound form is less important for discussing the complex formation. 
+A fly-casting mechanism provides an alternative viewpoint to the IDR-partner interaction scheme.[13] 
+An IDR has a greater interaction radius than that of a folded protein. 
+It captures partners at a large distance like a fishing line.
+Tumor suppressor protein p53 consists of four functional domains: the transactivation domain (TAD) [residues 1–43], the DNA binding domain (DBD) [100–300], the tetramerization domain (TET) [320–360], and the C-terminal negative regulatory domain (CTD) [363–393]. Both TAD and CTD are IDRs that interact with many molecules. These domains possess a hub property.[14] To date, three TAD-partner complex structures have been solved, where TAD adopts helical structures on surfaces of the partners in all three cases.[15–17] Four CTD-partner complex structures have been determined, where CTD adopts various structures: a helical structure to bind to S100B (PDB ID: 1DT7),[18] a sheet to Sir2 (PDB ID: 1MA3)[19], and fuzzy/coiled structures to CBP (PDB ID: 1JSP )[20] and Cyclin A (PDB ID: 1H26).[21] It is particularly interesting that CTD uses a common sequence [380–386] to bind to these four partners. In this sense, this short common binding region has the hub property. Furthermore, the states of histidine 380 (H380) and lysine 382 (K382) in CTD vary depending on the binding partner as follows: when binding to S100B, K382 is acetylated, although H380 can take either a positively charged or neutralized state depending on the pH condition.[18, 22] To Cyclin A, K382 is non-acetylated and H380 is neutralized.[21] To Sir2, K382 is acetylated and H380 is positively charged.[19] To CBP, K382 is acetylated and H380 is neutralized.[20] The correspondence between the state of CTD and the partner is presented in Table 1.
+
+Actually, CTD and its partner have been studied using molecular simulations: Allen et al. demonstrated trends of fluctuations around CTD binding sites of partners.[23] Chen et al. assessed which population sellection or the induced folding is plausible to bind to S100B using molecular dynamics (MD) with an implicit solvent model and some simplifications of the protein model.[24] McDowell et al. showed heterogeneity of CTD and the binding mechanism of CTD to S100B.[25] Staneva et al. investigated conformational preferences of the unbound CTD using an implicit-water Monte Carlo simulation.[26] Although these studies provided beneficial knowledge for the conformational ensemble of CTD, they did not clarify the effects of acetylation on the CTD’s conformational ensemble. We consider that computation of a free-energy landscape is crucially important to elucidate the effects of acetylation on the conformational ensemble. To that end, a powerful conformational sampling method is necessary.
+
+A multicanonical simulation has been introduced to enhance the sampling of complicated systems.[27–29] Nakajima et al. introduced a multicanonical MD simulation (McMD) using Cartesian coordinates for dynamic variables. Adoption of Cartesian coordinates produced a multi-molecular system that is tractable without special devices in a computer program. McMD generates various conformations under equilibrium conditions, which provides not only the most thermodynamically stable state but also intermediate states of the system. Importantly, a free-energy landscape at arbitrary temperature is computable from the resultant conformational ensemble. To increase the sampling efficiency of McMD, trivial trajectory parallelization McMD (TTP-McMD) was developed,[30, 31] and applied to systems consisting of an intrinsically disordered segment and its partner protein.[11, 32] Recently, a virtual system coupled McMD (V-McMD) was also developed to increase the McMD sampling efficiency.[33] Terakawa et al. performed all-atom TTP-V-McMD of a p53 linker region (40 residues long) to design force-field parameters for a coarse-grained simulation model. The study reproduced an X-ray scattering profile using the force field.[34]
+
+For this study, we examined four CTD fragments in an unbound state (i.e., single-chain state) using TTP-V-McMD, where K382 was non-acetylated or acetylated and H380 was positively charged or neutralized. The system was treated with an all-atom model in an explicit solvent. The free-energy landscapes were computed from the sampled conformations. Results show that the free-energy landscape of the single-chain state varies by the K382 acetylation and the H380 neutralization. In fact, the IDR-partner binding is controlled not only by the finally formed complex structure but also by the conformational distribution of the unbound state. We suggest possible binding mechanisms of CTD to their partner molecules, S100B, Sir2, CBP, and Cyclin A with investigation of the single-chain free-energy landscapes.
+
+\section{Theory}
+{\color{red}I explain the theory of McMD in the @@@ section.}
+
+\section{Materials and methods}
+\subsection{System preparation}
+We constructed four fragment systems of p53 CTD, all of which consist of 17 amino-acid residues (residues 372–388 in UniProt[35]) and amino acid sequences in single-letter codes as i) Ace-KKGQSTSR-H+-KKLMFKTE-NH2, ii) Ace-KKGQSTSR-H+-K-aK-LMFKTE-NH2, iii) Ace-KKGQSTSRHKKLMFKTE-NH2, and iv) Ace-KKGQSTSRHK-aK-LMFKTE-NH2, where aK, H+, Ace, and NH2 respectively represent acetylated lysine, positively charged histidine, acetyl cap, and amine cap. 
+As described in this paper, we refer respectively to these fragments as i) NonAc(H+), ii) Ac(H+), iii) NonAc, and iv) Ac. These fragments include in common the binding regions (residues 380–386) to the four partners S100B, Sir2, CBP, and Cyclin A. 
+We designate the regions as “common binding regions” in this study, which are shown as underlined in the sequences above. 
+Remember that {\color{red}Table 1} presents correspondence between the fragment and its binding partner molecule.
+We put each of the fragments in a periodic box ($50^3$ $\AA^3$) filled with water molecules and ions, where the number of ions is set so that the net charge of the whole system is zero and the ionic concentration is set to a physiological salt one. The conformations of the CTD fragments were the helical structure taken from the S100B-CTD complex. As explained later, these helical structures were randomized quickly in a preparative canonical MD simulation at a high temperature. Table 2 presents characteristics of the simulation systems.
+
+Before V-McMD simulations, we performed a constant-pressure (NPT) simulation at 300 K and 1 atm to ascertain the periodic box size for each system. The resultant box sizes are presented in Table 2. Then we conducted a long high-temperature (600 K) constant-volume (NVT) simulation (time step: 2.0 fs) to randomize the helical conformation of each system.
+Generally, DOS ($n(E_{\rm R})$) is required to perform multicanonical sampling (see eqn. 2). However, DOS is unknown a priori. Consequently, to begin with, we approximated DOS by performing conventional MD runs (i.e., canonical MD runs) at different temperatures covering a wide temperature range [280 K–600 K]. Then, as reported in the literature,[33] the resultant canonical energy distributions at the various temperatures are integrated to approximate DOS, which is used to define $E_{\rm vmc}$ for the first V-McMD simulations (see eqn. 5). DOS was estimated in the range of 280 K to 600 K. Therefore, the subsequently performed V-McMD simulations aim to obtain a flat energy distribution (eqn. 6) in this range. The upper temperature limit (600 K) was set so that the fragment overcame various energy barriers. The Results and Discussion section shows that various conformations were sampled. The lower limit (280 K) was lower than a room temperature (300 K). Therefore, the obtained conformational ensemble involved conformations probable at 300 K.
+
+The first V-McMD simulation was performed with using $E_{\rm vmc}$(=$E_{mc}$) obtained above, where 32 runs were executed in parallel starting from the randomized conformations sampled from the high-temperature simulation. Therefore, we used the TTP procedure to perform V-McMD,[31, 32] although we do not explicitly use the term “TTP-V-McMD” in this paper. After the first V-McMD simulation, we updated $E_{mc}$ according to the method presented in an earlier report [33], and performed the second V-McMD simulation with using the updated $E_{mc}$, and so on. The initial conformation for one of the 32 runs in the -th iteration is the last snapshot for the run in the -th iteration. We repeated this iteration procedure until the energy distribution converges to a function flat sufficient: $P_{\rm mc} \approx const$. Then the final iteration is the production run to collect snapshots for analyses. The numbers of iterations were 8 for NonAc(H+), 9 for Ac(H+), 8 for NonAc, and 8 for Ac, where the length of the production run was 320 ns for all the systems. Table S1 of Supplementary Materials presents the simulation lengths, inter-virtual state transition interval $N_{\rm int}$, and virtual-state zones $Z_i$ for each of iterations. One might consider that the simulation length of 320 ns for the production run is too short to obtain a statistically significant ensemble. However, the enhanced sampling method has higher efficiency than conventional sampling does. Later, we discuss statistical properties of the resultant ensembles.
+
+We used a computer program psygene–G[36] for V-McMD with the SHAKE[37] method to fix the covalent-bond length related to hydrogen atoms, the zero dipole summation method[38–40] to calculate long-range electrostatic interactions, the velocity scaling method[41] to control temperature, TIP3P model[42] for water molecule, and an Amber-based hybrid force field for p53 CTD.[43] The Amber-based hybrid force field is defined as $E_{\rm hybrid}(\omega) = (1-\omega)E_{94}+E_{96}$, where $E_{94}$ and $E_{96}$ respectively denote param 94 and param 96 AMBER force fields[44, 45], and where $\omega (0 \le \omega \le 1)$ is a mixture weight for $E_{94}$ and $E_{96}$. Kamiya et al. confirmed that a proper range for $\omega$ is $0.45 \le \omega \le 0.95$.[43] Ikebe et al. showed that the larger the value of , the smaller the helical propensity in the resultant conformational ensemble at 300 K.[46] In our previous simulation of an IDP system,[11] we set $\omega$=0.75 and obtained results comparable to experimentally obtained results. However, in our preparative simulation of the present systems with setting $\omega$=0.75, the resultant ensemble exhibited a considerably high helical content. Then, we set $\omega$=0.80 for the current study. The MD time step was set to 2.0 fs for all the simulations.
+
+We constructed the force-field parameters of acetylated lysine (aK) as follows: The dihedral angle parameters are the same as those of lysine in the Amber force field. The atomic partial charges of aK were from a force field (Ref: http://pc164.materials.uoi.gr/dpapageo/amberparams.php).
+
+\subsection{Conformational ensemble and free-energy landscape}
+The V-McMD simulation of each system produces a conformational ensemble that consists of snapshots of various energies. The statistical weight assigned to a snapshot of energy $E_{\rm R}$ at temperature $T$ is equivalent to the canonical energy distribution $P_{\rm c}(E_{\rm R}, T)$ (eqn. 1).  We denote this ensemble as $Q_{\rm SYS}$, where the notation “SYS” specifies the computed system as SYS = NonAc(H+), Ac(H+), NonAc, or Ac. Accordingly, the statistical weight of each system is denoted as $P^{\rm SYS}_{\rm c}(E_{\rm R}, T)$. The summation of the four ensembles is denoted as $Q_{\rm sum}(=\sum_{\rm SYS} Q_{\rm SYS})$ . In this study, we set $T$ = 300 K to prepare $Q_{\rm SYS}$, although we do not mention explicitly that the statistical weight is set at 300 K.
+
+To analyse the conformational ensemble, we generate a two-dimensional (2D) free-energy landscape using principal component analysis (PCA) as follows: First, we compute inter-C$\alpha$ atomic distances for each snapshot in $Q_{\rm SYS}$, and define a vector as 
+\begin{equation}
+\bm{q}=[q_1, q_2,\cdots,q_{Npair}],
+\end{equation} 
+where $q_i$ is a distance for a C$\alpha$ atomic pair and $N_{\rm pair}$ is the number of the pairs. Remember that the number of residues is 17 for all four systems. Consequently, $N_{\rm pair}$ is 136 for all systems. Then, we calculated a variance–covariance matrix $A$ with elements $(i,j)$ expressed as
+\begin{equation}
+A_{ij}=<q_i q_j > - <q_i > < q_j >,
+\end{equation} 
+where brackets are the ensemble average over conformations in $Q_{\rm SYS}$. Diagonalizing this matrix, we obtained $N_{\rm pair}$ eigenvalues ($\lambda_1, \lambda_2,...,\lambda_{N_{\rm pair}}$) and eigenvectors ($\bm{\nu}_1, \bm{\nu}_2,...,\bm{\nu}_{N_{\rm pair}}$), where $\bm{\nu}_i$ and $\lambda_i$ are paired satisfying an equation $A\bm{\nu}_i=\lambda_i \bm{\nu}_i$. The eigenvectors satisfy an orthogonal and normalized relation: $\bm{\nu}_i \cdot \bm{\nu}_i = \delta_{ij}$. We presume that the eigenvalues are arranged in descending order as $\lambda_1 > \lambda_2> \cdots$.
+We use $\bm{\nu}_1$ and $\bm{\nu}_2$ to construct the 2D space (2D PCA space) by setting the coordinate axes to $\bm{\nu}_1$ and $\bm{\nu}_2$, and to generate a conformational distribution by projecting conformations in $Q_{\rm SYS}$ to the 2D PCA space. The coordinate axis $\bm{\nu}_i$ is designated as a principal component (PC) axis $i$. We denote the k-th conformation in $Q_{\rm SYS}$ as  $\bm{q}^{(k)}(=q_1^{(k)}, q_2^{(k)},..., q_N^{(k)})$). Then, the projection of $\bm{q}^{(k)}$ to the axis $\bm{\nu}_i$ is done by a scalar product: $x^{(k)}_{\rm PCi}=\bm{q}^{(k)} \cdot \bm{\nu}_i$ ($i=1,2$). The position of  in the 2D PCA space is given by 2D coordinates $[x^{(k)}_{\rm PC1}, x^{(k)}_{\rm PC2}]$. Repeating this procedure for all conformations in $Q_{\rm SYS}$, we obtain the distribution of conformations in the 2D PCA space: $P^{\rm SYS}(x^{(k)}_{\rm PC1}, x^{(k)}_{\rm PC2}],T)$, where conformation of energy $E_{\rm R}$ contributes to the distribution with the weight $P_{\rm c}^{\rm SYS}(E_{\rm R},T)$. Finally, the potential of mean force (PMF) is computed as 
+\begin{equation}
+F^{\rm SYS}(x^{(k)}_{\rm PC1}, x^{(k)}_{\rm PC2},T)=-R_{\rm gas}T\ln[P^{\rm SYS}(x^{(k)}_{\rm PC1}, x^{(k)}_{\rm PC2}],T)]
+\end{equation}
+with spatial patterns that are called the free-energy landscape (FEL) in this study. From comparison of the spatial patterns of FEL among the four systems, we can discuss the difference of the architecture of FEL among the systems.
+
+The ratio of contribution from the PC component  to the whole standard deviation is expressed as
+\begin{equation}
+\label{eq:rc}
+rc_i = \frac{\lambda_i}{\sum_{i=1}^N \lambda}
+\end{equation}
+In PCA, the larger the eigenvalue assigned to the PC components  becomes, the greater the contribution: $SD_1>SD_2>\cdots$. Therefore, the 2D PCA space constructed by $\bm{\nu}_1$ and $\bm{\nu}_2$ is suitable to overview the conformational distribution. The contribution ratio by the PC components 1 and 2 is given simply as $rc_1+rc_2$.
+
+\subsection{Synthesis of the Non-acetyl and Acetyl CTD Fragments}
+CTD fragment with non-acetyl lysine (K382) was synthesized by the 9-fluorenylmethoxycarbonyl (Fmoc) method at a 0.05 mmol scale using a peptide synthesizer (Liberty Blue; CEM Corp., NC). After the completion of the peptide chain assembly, the obtained resin was treated with TFA containing 2.5\% triisopropylsilane and 2.5\% distilled water for 2 hr. The crude peptide was concentrated by a nitrogen stream, precipitated by ether and purified by the reversed-phase HPLC to obtain non-acetyl peptide. ESI mass, found: 1038.7, calcd. for [M+2H]2+: 1038.8.
+	
+	The synthesis of CTD fragment with acetyl-lysine (aK382) was also performed by the synthesizer, except that Lys11 was introduced using Fmoc-Lys(Aloc)-OH (Aloc: allyloxycarbonyl), activated by O-benzotriazol-1-yl-N,N,N’,N’-tetramethyluronium hexafluorophosphate (HBTU)/ N,N-diisopropylethylamine (DIEA). After the completion of the chain elongation, the solution of tetrakis(triphenylphosphine)palladium(0), phenylsilane, acetic anhydride in dichloromethane was added to the resin for 45 min to acetylate the side chain amino group of Lys selectively 11. The deprotection and purification were performed in the same manner to obtain Ac peptide. ESI mass, found: 1059.7, calcd. for [M+2H]2+: 1059.8.
+	
+\subsection{Far-UV Circular Dichroism (CD) Measurements}
+The non-acetyl and acetyl CTD fragments were dissolved in Milli-Q water at 200 μM. The peptide solutions were diluted to 40 μM with the desired concentration of trifluoroethanol (TFE) for CD measurements. To detect the helix propensity, we varied TFE concentrations of 0–50\%. It is noteworthy that the TFE concentrations in this article are volume per volume percentages. The peptide solutions also contained 25 mM sodium phosphate (pH 7.0 without TFE) and 0.1 M sodium chloride. Because pH is 7.0, the histidine state is neutral. Consequently, the fragments treated in this CD measurement are also designated as NonAc and Ac.
+
+We performed far-UV CD measurements of the peptide solutions. Far-UV CD spectra were recorded on a spectropolarimeter (JASCO J-820; Jasco Corp., Japan) at 25°C using a quartz cuvette with 1-mm path length. The spectra were expressed as the mean residue ellipticity and [θ] (deg cm2 dmol−1). All spectra were estimated iteratively 16 times. Furthermore, this procedure was repeated three times to compute the average and standard deviation of the spectrum.
+
+\section{Results and discussion}
+The V-McMD production run generated conformational ensemble $Q_{\rm SYS}$ for the four CTD systems (SYS = NonAc(H+), Ac(H+), NonAc, and Ac) in the unbound state. Figure \ref{fig:P_vmc_p53} demonstrates the flat distributions from the production runs. The flatness ensures that eqn. 6 was satisfied (DOS was estimated accurately). Therefore, the sampling has been done with statistical significance. Below, we analyze effects of the acetylation of K382 and the charge neutralization of H380 on the free-energy landscape and secondary structure contents. Furthermore, we discuss possible binding mechanisms of the four CTD fragments to their partner molecules. Last, we again check the statistical significance of the resultant ensemble by demonstrating the convergence of FEL.
+\begin{figure}
+  \centering
+  \includegraphics[width=10cm]{../single_CTD/figures_p53ctd/2.pdf}
+  \caption{\label{fig:P_vmc_p53} Flat energy distribution for the a) NonAc(H+), b) Ac(H+), c) NonAc, and d) Ac systems. 
+Individual distributions ($P_{\rm vmc}(E_{\rm R},v_i), i=1,..,n_{\rm vs}$) for the virtual states are integrated into the shown distribution $P_{\rm mc}(E_{\rm R})$ using the method presented in an earlier report.[3]}
+\end{figure}
+
+\subsection{Free energy landscape of the full-length fragments}
+Figure \ref{fig:fel_whole} shows FELs at 300 K constructed in the 2D PCA space. The contribution ratios $rc_1$ and $rc_2$ from $Q_{\rm sum}$ were, respectively, 41.4\% and 18.8\%. Then the contributions from the PC 1 and 2 axes ($rc_1+rc_2$) were 60.2\%. In Figure \ref{fig:fel_whole}, we refer to the clusters as $G^{\rm SYS}_k$, where superscript SYS specifies the computed system and the subscript $k$ is a label assigned to the clusters. Figure \ref{fig:fel_whole_confs} demonstrates representative tertiary structures in each cluster. In all panels, $G^{\rm SYS}_1$ is assigned to the cluster of the global minimum PMF, which corresponds to a nearly complete helix (see structures in $G^{\rm SYS}_1$ in Figure 4) located at the same position in the 2D PCA space. Figure \ref{fig:fel_whole} manifests that the clusters can transition mutually at 300 K: the free-energy barriers among the clusters are surmountable at 300 K, except for the cluster $G^{\rm NonAc(H^+)}_4$. In other words, the CTD fragments are disordered.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=10cm]{../single_CTD/figures_p53ctd/3.pdf}
+  \caption{\label{fig:fel_whole}}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=10cm]{../single_CTD/figures_p53ctd/4.pdf}
+  \caption{\label{fig:fel_whole_confs}}
+\end{figure}
+
+All FELs involved not only the complete-helix cluster ($G^{\rm SYS}_1$) but also partially helical ones. The tertiary structures are shown in $G^{\rm NonAc(H^+)}_2$, $G^{\rm NonAc(H^+)}_6$, $G^{\rm NonAc(H^+)}_7$, and $G^{\rm NonAc(H^+)}_8$ in Figure \ref{fig:fel_whole_confs}a, in $G^{\rm Ac(H^+)}_2$ and $G^{\rm Ac(H^+)}_4$ in Figure \ref{fig:fel_whole_confs}b, in $G^{\rm NonAc}_2$, $G^{\rm NonAc}_5$, $G^{\rm NonAc}_6$, and $G^{\rm NonAc}_7$ in Figure \ref{fig:fel_whole_confs}c, and in $G^{\rm Ac}_4$, $G^{\rm Ac}_5$, and $G^{\rm Ac}_7$ in Figure \ref{fig:fel_whole_confs}d. The $\beta$-hairpins are also found as $G^{\rm NonAc(H^+)}_4$ in Figure \ref{fig:fel_whole_confs}a, as $G^{\rm Ac(H^+)}_3$ in Figure \ref{fig:fel_whole_confs}b (this is a distorted hairpin-like structure), as  $G^{\rm NonAc}_3$, $G^{\rm NonAc}_4$, and $G^{\rm NonAc}_5$ in Figure \ref{fig:fel_whole_confs}c, and as $G^{\rm Ac}_3$ in Figure \ref{fig:fel_whole_confs}d.
+
+Although all the CTD fragments exhibited conformational diversity, the FEL shape is considerably different as shown in Figure \ref{fig:fel_whole}. Remarkable differences are apparent for regions indicated by the solid-line and broken-line circles in the figure. Comparison of FELs between Figures \ref{fig:fel_whole}a and \ref{fig:fel_whole}b as well as between Figures \ref{fig:fel_whole}c and \ref{fig:fel_whole}d clarifies that the acetylation of K382 diminishes the probability in the region by a solid-line circle. We find that extended conformations are distributed in the solid-line circled region. It is likely that the acetylation facilitates hydrophobic-core formation by making the CTD fragment compact, which results in disappearance of the extended conformations. To verify this expectation, we calculated a radius of gyration of the fragments at 300 K only using hydrophobic atoms in the CTD fragment: C$\beta$, C$\gamma$, and C$\delta$ atoms of K372, K373, K381, K382, and K386; C$\beta$ atom of H380; C$\beta$ atom of L383; C$\beta$ atom of M384; and C$\beta$ atom of P385. The side-chain tip of the acetylated K382 in the Ac(H+) and Ac systems was excluded from the computation of radius of gyration for the strict comparison because the side-chain tip does not exist in NonAc(H+) and NonAc. Table 3 presents the radius of gyration values ($R_{\rm g}$), which demonstrates that the acetylation induces a compact hydrophobic core. We discuss this point further by viewing the tertiary structures of the CTD fragments below.
+
+We computed the secondary-structure propensity of each residue in $Q_{\rm SYS}$ using the DSSP program.[47] Figure \ref{fig:ss_contents_p53} depicts the secondary-structure contents along the sequence at 300 K. Comparison of Figures \ref{fig:ss_contents_p53}a and \ref{fig:ss_contents_p53}b reveals that K382 acetylation induces the helix propensity of the CTD fragment. This tendency is also apparent from comparison of Figures \ref{fig:ss_contents_p53}c and \ref{fig:ss_contents_p53}d. Furthermore, Table 4 presents the helix increment by the acetylation quantitatively.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=10cm]{../single_CTD/figures_p53ctd/5.pdf}
+  \caption{\label{fig:ss_contents_p53}}
+\end{figure}
+
+Figure \ref{fig:repres_struct_in_G}a presents a tertiary structure taken from the cluster $G^{\rm Ac(H^+)}_1$, where the aK382 and L383 side-chains form a hydrophobic contact in the helix. Similarly, a conformation taken from $G^{\rm Ac}_1$ shows that a hydrophobic contact is formed between aK382 and S378 (Figure 6b). Figure \ref{fig:repres_struct_in_G}c shows a hydrophobic contact between the side-chain stems of aK382 and K381 in the partially helical conformation taken from $G^{\rm Ac(H^+)}_2$. Unless K382 is acetylated, a repulsive force acts between these two lysine residues. Furthermore, in this conformation, the oxygen atom in the aK382 side-chain and the nitrogen atom in the K381 side-chain interact electro-statistically. Figure \ref{fig:repres_struct_in_G}d presents a conformation taken from $G^{\rm Ac}_5$, where a hydrophobic core is formed by side-chain tips of aK382 and M384 and side-chain stem of R379. Consequently, the acetylation induces the hydrophobic core formation in helices. Then the radius of gyration becomes small. If Lys382 is non-acetyl form, then repulsion interactions take place between Lys382 and the other positively charged residues in the helix because each sequence of the fragments includes six or seven positively charged residues. Consequently, acetyl-lysine stabilizes helical structures more than non-acetyl lysine does.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=10cm]{../single_CTD/figures_p53ctd/6.pdf}
+  \caption{\label{fig:repres_struct_in_G}}
+\end{figure}
+
+As described above, comparison between Figures \ref{fig:fel_whole}a and \ref{fig:fel_whole}c as well as between Figures \ref{fig:fel_whole}b and \ref{fig:fel_whole}d clarified that the charge neutralization of H380 increases the probability in the broken-line circled region, where hairpin structures are distributed. Figure \ref{fig:ss_contents_p53} and Table 4 also show that the charge neutralization enhances the hairpin formation. Figure \ref{fig:haripin_confs_p53}a portrays a hairpin taken from cluster $G^{\rm NonAc}_4$, where H380 and K381 form a hydrogen bond. Repulsive interaction acts between H380 and K381 if H380 is positively charged. Similarly, Figure \ref{fig:haripin_confs_p53}b displays a distorted hairpin taken from $G^{\rm NonAc}_4$ @@WRONG?, where the side-chain of H380 and main-chain of K382 form a hydrogen bond. If H380 is positively charged, then this distorted hairpin becomes unstable because a repulsive interaction between the positively charged H380 and K382 might break the hydrogen bond. Furthermore, a repulsive interaction between the positively charged H380 and R379 might also destabilize the $\beta$-hairpin structure. Consequently, the charge neutralization of H380 is necessary for stabilizing the hairpins in Figures \ref{fig:haripin_confs_p53}a and \ref{fig:haripin_confs_p53}b. Figure \ref{fig:haripin_confs_p53}c displays a hairpin from $G^{\rm NonAc}_3$, where H380 and T377 form a hydrogen bond. These tertiary structures exemplify that the charge neutralized H380 serves the hydrogen bonds to stabilize turns in the hairpins.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=10cm]{../single_CTD/figures_p53ctd/7.pdf}
+  \caption{\label{fig:haripin_confs_p53}}
+\end{figure}
+
+Data shown in the figure \ref{fig:fel_whole} suggest visually that the Ac(H+) system might have the narrowest structural varieties among the four systems. To elucidate this feature quantitatively, we computed the standard deviation $\sigma_{\rm SYS}$ of the conformational distribution for C$\alpha$ atoms for each system as
+\begin{equation}
+\label{eq:sig_ca}
+\sigma_{\rm SYS} = \sum_i [<q_i^2 > - <q_i>^2]^{1/2},
+\end{equation}
+where the brackets are the ensemble average over conformations in each ensemble $Q_{\rm SYS}$ weighted at 300 K. The resultant values are: $\sigma_{\rm NonAc(H^+)}= 37.6 \AA $,  $\sigma_{\rm Ac(H^+)}= 30.6 \AA $,  $\sigma_{\rm NonAc}= 36.5 \AA $, and  $\sigma_{\rm Ac}= 36.9 \AA $. These values of structural fluctuations are consistent with the radii of gyration in Table 3. Consequently, the Ac(H+) system has the smallest standard deviation. This reduction of the broadening results from the acetylation of K382. One might expect the Ac system to have a narrow distribution because K382 is also acetylated in this system. However, as shown above, the neutralization of H380 induces hairpins, which prevents reduction of the distribution.
+
+A temperature replica exchange MD simulation[24, 26] of a 14-residue p53 CTD fragment and a conventional MD simulation[24, 26] of a 15-residue p53 CTD fragment were performed to obtain a conformational ensemble in the unbound state. These two fragments are fully included in our 17-residue fragment, and H380 and K382 were positively charged respectively and K382 was non-acetylated. Consequently, those fragments are parts of the NonAc(H+) fragment, and binds to the S100B molecule with adoption of a helical conformation. It is particularly interesting that, in these studies, the ensembles involved a helical fraction, which is consistent with our result for $Q_{\rm NonAc(H^+)}$. In contrast, recent CD measurement of two 32-residue p53 CTD fragments, which involve our NonAc and Ac segments, showed that the conformations of the CTD fragments are randomized.[48] Our computational results demonstrated that both $Q_{\rm NonAc}$ and $Q_{\rm Ac}$ contain a helical fraction and that the helical content of $Q_{\rm Ac}$ is larger than that of $Q_{\rm NonAc}$. This apparent inconsistency between the computational results and the CD-experimental observation should be analyzed. We note, however, that the fragment length for the CD experiment is considerably longer than ours.
+
+To link the computation and experiment, we conducted CD experiments of the NonAc and Ac fragments of 17 residues long. TFE enhances formation of secondary structures, especially of helix.[49, 50] To clarify the inherent helix propensity of the two fragments, the measurement was done at various TFE concentrations. CD spectra at zero TFE concentration have suggested that the overall structural feature of both fragments is characterized by a disorder state (data not shown), which is consistent to the preceding CD measurement.[48] Therefore, the helical contents obtained from the simulations were larger than those from the CD experiments. In fact, although CD experiments are useful to discuss the secondary-structure properties of polypeptide qualitatively, the CD data might involve quantitative ambiguity in assessing the secondary-structure contents. On the other hand, the simulation data might involve some errors. Therefore, we compare the simulation data with the CD data qualitatively. Figure \ref{fig:TFE_mesure} shows that the Ac fragment has a higher helix contents than the NonAc fragment at all examined TFE concentrations including the zero TFE concentration. This result was also supported by analysis of the CD spectra using “Bestsel” software [51] (data not shown), which estimates the secondary-structure contents from CD spectra. Therefore, we conclude from both computation and experimentation that the acetylation of K382 enhances the helix formation slightly.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=10cm]{../single_CTD/figures_p53ctd/8.pdf}
+  \caption{\label{fig:TFE_mesure}}
+\end{figure}
+
+As described earlier, NonAc(H+) binds to S100B with adopting helical conformation and Ac(H+) does not adopt a helical conformation to bind to a partner (Table 1). This experimentally obtained result might be inconsistent to the computational result that $Q_{\rm NonAc(H^+)}$ contains a smaller helix content than $Q_{\rm NonAc(H^+)}$. We discuss possible binding mechanisms of the CTD fragments to their partner molecules in the next section.
+
+\subsection{Free energy landscape of the common binding region}
+As described in the Introduction section, the p53 CTD has a hub property. Four CTD-partner complex structures were determined. As described in the Materials and methods section, the residues 380–386 of CTD are the common binding region to all the four partners S100B, Sir2, CBP, and Cyclin A. We computed the 2D FEL for this common binding region (Figure \ref{fig:fel_common}), where the variance-covariance matrix was computed only for the common binding region. This figure shows that various clusters are distributed in the 2D PCA space for all the ensembles. The contribution ratios are  $rc_1$=73.5 \% and $rc_2$= 14.4 \%; then $rc_1+rc_2$=87.9 \%.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=10cm]{../single_CTD/figures_p53ctd/9.pdf}
+  \caption{\label{fig:fel_common}}
+\end{figure}
+
+We refer to the clusters as $S_k^{\rm SYS}$, where superscript SYS specifies the computed system and subscript  is a label assigned to clusters in Figure \ref{fig:fel_common}. Cluster $S_1^{\rm SYS}$ is assigned to the global minimum of PMF in all panels along with FEL for the full-length fragments. Figure \ref{fig:repre_confs_comm_fel} presents representative tertiary structures in each cluster. Again, this cluster corresponds to a helical cluster (see structures in $S_1^{\rm SYS}$ in the figure \ref{fig:repre_confs_comm_fel}) located at the same position in all panels.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=10cm]{../single_CTD/figures_p53ctd/10.pdf}
+  \caption{\label{fig:repre_confs_comm_fel}}
+\end{figure}
+
+Apparently, the ensemble $Q_{\rm NonAc(H^+)}$ has the broadest distribution of the four ensembles. 
+Many clusters are found in FEL (Figure \ref{fig:fel_common}a). 
+The tertiary structures taken from the clusters are diverse (Figure \ref{fig:repre_confs_comm_fel}a): 
+The complete helix is $S_1^{\rm NonAc(H^+)}$; 
+partial helices are $S_2^{\rm NonAc(H^+)}$, $S_3^{\rm NonAc(H^+)}$, $S_4^{\rm NonAc(H^+)}$, $S_6^{\rm NonAc(H^+)}$, $S_{10}^{\rm NonAc(H^+)}$, $S_{11}^{\rm NonAc(H^+)}$, and $S_{12}^{\rm NonAc(H^+)}$; 
+$\beta$ hairpins are $S_7^{\rm NonAc(H^+)}$ and $S_8^{\rm NonAc(H^+)}$; and random-coiled structures are $S_5^{\rm NonAc(H^+)}$ and $S_9^{\rm NonAc(H^+)}$. 
+Inter-cluster transitions can take place readily because free-energy barriers among the clusters are low.
+
+Structural diversity decreases when K382 is acetylated and/or H380 is neutralised. 
+In $Q_{\rm Ac(H^+)}$, no $\beta$ hairpin cluster exists, although three partial helix clusters ($S_1^{\rm NonAc(H^+)}$, $S_3^{\rm Ac(H^+)}$ and $S_4^{\rm Ac(H^+)}$) do (Figure \ref{fig:fel_common}b).
+In $Q_{\rm NonAc}$, only two helix clusters ($S_1^{\rm NonAc}$ and $S_2^{\rm NonAc}$) and three $\beta$ hairpin clusters ( $S_3^{\rm NonAc}$,  $S_4^{\rm NonAc}$ and  $S_5^{\rm NonAc}$) exist (Figure \ref{fig:fel_common}c).
+In $Q_{\rm Ac}$, two helix clusters ($S_1^{\rm Ac}$ and $S_2^{\rm Ac}$) exist, but no hairpin cluster exists (Figure \ref{fig:fel_common}d).
+In fact, the free-energy barriers among clusters in Figures \ref{fig:fel_common}b, \ref{fig:fel_common}c, and \ref{fig:fel_common}d are higher than those in Figure \ref{fig:fel_common}a. 
+Therefore, inter-cluster transitions in Figures \ref{fig:fel_common}b, \ref{fig:fel_common}c, and \ref{fig:fel_common}d occur by passing narrower regions than those in Figure \ref{fig:fel_common}a. 
+Figure \ref{fig:comp_structs} displays the experimentally determined complex structures and sampled conformations that are located near the bound form in the free-energy landscape (Figure \ref{fig:fel_common}). 
+Apparently, the sampled conformations closely resemble the experimental bound form.
+\begin{figure}
+  \centering
+  \includegraphics[width=10cm]{../single_CTD/figures_p53ctd/11.pdf}
+  \caption{\label{fig:comp_structs}}
+\end{figure}
+
+The bound forms of the common binding region in the experimentally determined complex structures are also assigned to Figure \ref{fig:fel_common}. 
+The bound forms $\rm s_{S100B}$ and $\rm s_{CBP}$ are mutually close depicted in Figure \ref{fig:fel_common} although $\rm s_{S100B}$ and $\rm s_{CBP}$ respectively denote a helix and a twisted conformation (See Fig. S1 of Supplementary Materials). 
+The closeness of the two conformations results from the similarity of the C$\alpha$ atomic pair distances. 
+Remember that the PCA space is generated based on the inter-C$\alpha$ atomic distances. 
+Therefore, $\rm s_{CBP}$ can convert to $\rm s_{S100B}$ by minor rearrangements of the C$\alpha$ atomic pair distances.
+Figure \ref{fig:fel_common} proposes possible mechanisms of CTD binding to their partner molecules. 
+We infer that the main binding mechanism of NonAc(H+) to S100B is the population selection because $\rm s_{S100B}$ is located at a fringe of the most stable cluster $S_1^{\rm NonAc(H^+)}$ (Figure \ref{fig:fel_common}a). 
+In other words, $\rm Q_{NonAc(H^+)}$ prepares the bound form in advance. 
+Furthermore, because the free-energy barriers from the other clusters to $S_1^{\rm NonAc(H^+)}$ are low as described above, the bound form is recruited quickly when the bound form is exhausted to bind to S100B. 
+The helical content of $\rm Q_{NonAc(H^+)}$ is smaller than that of $\rm Q_{Ac(H^+)}$. 
+
+Figure \ref{fig:fel_common}a suggests that $\rm Q_{NonAc(H^+)}$ contains helical conformations sufficient for use for binding to S100B even if the helical content of $\rm Q_{NonAc(H^+)}$ is less than that of $\rm Q_{Ac(H^+)}$.
+
+The population-selection mechanism might take place when the Ac fragment binds to CBP, where the conformations in the most stable cluster $S_1^{\rm Ac}$ can transition readily to the conformation $\rm s_{CBP}$ (Figure \ref{fig:fel_common}d). 
+However, the cluster $S_1^{\rm Ac}$ is not connected to the other clusters by low free-energy pathways. 
+Consequently, the recruitment of conformations to  from the other clusters might be slow. 
+In other words, the rate constant for the Ac fragment binding to CBP might be smaller than that for the NonAc(H+) binding to S100B if the population-selection mechanism occurs.
+
+For binding of the Ac(H+) fragment to Sir2, the conformation $\rm s_{Sir2}$ is located at a high free-energy site in Figure \ref{fig:fel_common}b. 
+Therefore, we presume that the fragment binds to Sir2 with a different conformation than $\rm s_{Sir2}$, by which an encounter complex is formed. 
+Then, the intermolecular interactions bring the fragment to the genuine complex structure. 
+Therefore, we presume that the binding mechanism of this fragment belongs to the induced folding mechanism.
+
+The NonAc fragment can bind to either S100B or Cyclin A (Table 1). The binding mechanism to S100B might be the population selection for the same reason for the NonAc(H+) fragment binding to S100B. 
+The structure $\rm s_{Cyclin}$ is located at a site with free energy of about 3 kcal / mol in Figure \ref{fig:fel_common}c. 
+Therefore, a small fraction of the ensemble $\rm Q_{NonAc}$ is a conformation close to $\rm s_{Sir2}$. Consequently, the binding mechanism of this fragment to Cyclin A might belong to the population selection. However, the main fraction of $\rm Q_{NonAc}$ is far from $\rm s_{Cyclin}$. Therefore, different conformations might be used to bind to Cyclin A. Consequently, the induced folding mechanism is also possible.
+
+It is likely that the diversity of FEL modulated by the state variation of lysine and/or histidine induces the hub property of CTD. One can reasonably infer that different FELs have different interaction mechanisms to other molecules. A single protein segment can have multiple binding partners. This property is called a hub. It is noteworthy that the flexibility of the CTD segment is fundamentally important for the diversity of FEL. If CTD is a structurally well-defined portion of the protein, then FEL has no great diversity. Therefore, CTD might bind only to a single partner.
+
+The binding mechanism proposed here is based only on the FEL of the unbound state, which means that no IDR-partner interactions are considered. 
+To ascertain whether the proposed mechanism is correct or not, we should perform simulations of systems where CTDs and their partner molecules coexist, as in earlier studies.[11,32] 
+However, the current study is useful to investigate the variation of FEL in the presence or absence of the partner.
+
+Finally, we confirmed the convergence of the sampled data. As reported in the convergence of sampling–section in Supplementary Materials, the convergence is good for all the systems.
+
+\subsection{Conclusions}
+To investigate a highly flexible biomolecular system, computational approaches are fundamentally important because experimental detection of large fluctuations at an atomistic resolution is still difficult. 
+Because the high flexibility is an inherent property of IDR, investigation of the conformational ensemble is necessary to elucidate the nature of IDR. 
+Therefore, a powerful conformational sampling method is required. 
+We performed the enhanced conformational sampling method, V-McMD, to obtain the conformational ensembles of four p53 CTD fragments in the unbound state at the atomic resolution in an explicit solvent. 
+@@@Then we constructed free-energy landscapes from the obtained conformational ensembles.
+
+The shape of the free-energy landscape varied depending on the K382 acetylation and/or the H380 neutralization in CTD. 
+It is particularly interesting that acetylation enhanced the helix propensity. This computational result was confirmed using CD experiments. 
+We also demonstrated that acetylation induces the hydrophobic-core formation. The H380 neutralization has enhanced the hairpin formation of CTD. 
+The helix content obtained from V-McMD tends to be larger than that from the CD experiment. 
+This fact suggests that the force field is imperfect and that there have not been accurate force fields yet.[52] Results from the CD experiment were explained by the McMD simulation with atomistic details. 
+Therefore, we believe that our results are useful to discuss the variation of CTD’s conformational ensemble. 
+Furthermore, the current results might assist in the generation of a general model for understanding the switching mechanism conducted by PTMs.
+
+Each of the four CTD fragments has particular binding partner(s). 
+We proposed possible binding mechanisms from the free-energy landscape of the unbound state. 
+To judge whether the proposed mechanisms are correct or not, sampling of systems consisting of CTD and their partners is necessary for the next stage of research. 
+However, as discussed in the Introduction, the binding mechanism of IDR is determined not only by the finally formed complex structure but also by the conformational distribution in the single-chain state. 
+As discussed in Results, the spreading of the free-energy landscape and the free-energy barriers might affect the IDR-partner binding mechanism. 
+Therefore, results of the current study of the unbound state are expected to be useful to investigate the variation of the free-energy landscape in the presence of the partner molecules. 
+The results will provide useful knowledge to ascertain the hub property and coupled folding and binding of CTD.
